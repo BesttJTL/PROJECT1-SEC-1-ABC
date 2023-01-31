@@ -4,7 +4,7 @@
  
 <template>
   <h1 class="text-3xl font-bold underline text-green-200">
-    Hello world!dsadad
+    Dev mode
   </h1>
 </template>
  
