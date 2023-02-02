@@ -1,0 +1,34 @@
+<script setup>
+
+</script>
+ 
+<template>
+    <div id="fullscreen" class="flex flex-col w-screen h-screen ">
+
+      <div id="top" class="h-1/6 w-full bg-lime-200">
+        Header
+      </div>
+
+      <div id="center" class="flex flex-row h-full w-full">
+        <div id="left" class="w-1/12 h-full bg-blue-200">left</div>
+        <div id="background" class="flex flex-col w-10/12 h-full relative bg-scroll bg-[length:100%_100%] bg-[url('./src/components/BackgroundPicture/background.png')]">
+          <img src="./components/Characters/Blueman.gif" class="w-96 absolute bottom-44 left-8">
+          <img src="./components/Characters/GreenSlime.gif" class="w-96  absolute bottom-44 right-14">
+          <!-- ออกเเบบได้เลยครับผม -->
+          <div id="first" class="w-full h-1/3 bg-transparent">01</div>
+          <div id="second" class="w-full h-1/3 bg-transparent">02</div>
+          <div id="third" class="w-full h-1/3 bg-transparent">03</div>
+        </div>
+        <div id="right" class="w-1/12 h-full bg-blue-400">right</div>
+      </div>
+
+      <div id="bottom" class="h-1/6 w-full bg-lime-300">
+        Footer
+      </div>
+      
+    </div>
+</template>
+ 
+<style scoped>
+
+</style>
