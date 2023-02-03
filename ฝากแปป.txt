@@ -1,0 +1,16 @@
+<script setup>
+const answ = false;
+</script>
+
+
+<template>
+<button v-if="answ = true" class="bg-green-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">
+              Button1
+            </button>
+            <button v-else-if="answ = false" class="bg-red-600 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">
+              Button1
+            </button>
+            <button v-else class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">
+              Button1
+            </button>
+</template>            
