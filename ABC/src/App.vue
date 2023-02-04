@@ -1,18 +1,18 @@
 <script setup>
-// //sample
-const buttonGreen = 'bg-green-500 hover:bg-green-400 text-white font-bold py-8 px-20 border-4 border-green-700 hover:border-green-500 rounded mr-10';
-const buttonRed = 'bg-red-500 hover:bg-red-400 text-white font-bold py-8 px-20 border-4 border-red-700 hover:border-red-500 rounded mr-10';
-const buttonDefault = "bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10";
-function checkAnswer(answer) {
-  if (answer === true) {
-    return buttonGreen;
-  } else if (answer === false){
-    return buttonRed;
-  } else {
-    return buttonDefault;
-  }
-}
-// const answer = true;
+// // //sample
+// const buttonGreen = 'bg-green-500 hover:bg-green-400 text-white font-bold py-8 px-20 border-4 border-green-700 hover:border-green-500 rounded mr-10';
+// const buttonRed = 'bg-red-500 hover:bg-red-400 text-white font-bold py-8 px-20 border-4 border-red-700 hover:border-red-500 rounded mr-10';
+// const buttonDefault = "bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10";
+// function checkAnswer(answer) {
+//   if (answer === true) {
+//     return buttonGreen;
+//   } else if (answer === false){
+//     return buttonRed;
+//   } else {
+//     return buttonDefault;
+//   }
+// }
+// //const answer = true;
 
 </script>
  
@@ -35,8 +35,21 @@ function checkAnswer(answer) {
           <div id="third" class="w-full h-1/3 bg-transparent flex items-center justify-center">
             <div class="flex flex-col">
               <div class="flex flex-row justify-center">
-                <button :class="checkAnswer(answer)" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">Button2</button>
-                <button :class="checkAnswer(answer)" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">Button1</button>
+                
+                <button class="relative">
+                  <img src="./components/Answer/ans1.png" alt="image" class="inset-0 w-full h-full object-cover hover:bg-blue-400">
+                  <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium">
+                    Button Text
+                  </span>
+                </button>
+
+                <button class="relative">
+                  <img src="./components/Answer/ans2.png" alt="image" class="inset-0 w-full h-full object-cover">
+                  <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium">
+                    Button Text
+                  </span>
+                </button>
+              
               </div>
             </div>
           </div>
