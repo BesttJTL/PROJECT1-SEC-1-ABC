@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {    
       backgroundImage: {
-      'testbg': "url('./src/components/BackgroundPicture/background.png')"
+      'background': "url('./src/components/BackgroundPicture/background.png')"
+      ,'boxtext':"url('./src/components/UIButton/question.png')"
     }
   },   
   },
