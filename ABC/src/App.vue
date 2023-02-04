@@ -1,29 +1,18 @@
 <script setup>
 // //sample
-// function randomQuestion() {
-//   const questions = [
-//     {
-//       question: "Bat",
-//       answer: "ค้างคาว",
-//     },
-//     {
-//       question: "Japan",
-//       answer: "ญี่ปุ่น",
-//     },
-//   ];
-//   const randomIndex = Math.floor(Math.random() * questions.length);
-//   return questions[randomIndex];
-// }
-// const correctAnswer = ref(0);
-// function countCorrectAnswer() {
-//   correctAnswer.value++;
-// }
-
-// function checkAnswer(answer) {
-//   if (answer === randomQuestion().answer) {
-//     countCorrectAnswer();
-//   } 
-// }
+const buttonGreen = 'bg-green-500 hover:bg-green-400 text-white font-bold py-8 px-20 border-4 border-green-700 hover:border-green-500 rounded mr-10';
+const buttonRed = 'bg-red-500 hover:bg-red-400 text-white font-bold py-8 px-20 border-4 border-red-700 hover:border-red-500 rounded mr-10';
+const buttonDefault = "bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10";
+function checkAnswer(answer) {
+  if (answer === true) {
+    return buttonGreen;
+  } else if (answer === false){
+    return buttonRed;
+  } else {
+    return buttonDefault;
+  }
+}
+// const answer = true;
 
 </script>
  
@@ -44,13 +33,12 @@
           <div id="first" class="w-full h-1/3 bg-transparent">01</div>
           <div id="second" class="w-full h-1/3 bg-transparent">02</div>
           <div id="third" class="w-full h-1/3 bg-transparent flex items-center justify-center">
-            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">
-              Button1
-            </button>
-
-            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">
-              Button2
-            </button>
+            <div class="flex flex-col">
+              <div class="flex flex-row justify-center">
+                <button :class="checkAnswer(answer)" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">Button2</button>
+                <button :class="checkAnswer(answer)" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-8 px-20 border-4 border-blue-700 hover:border-blue-500 rounded mr-10">Button1</button>
+              </div>
+            </div>
           </div>
         
         </div>
