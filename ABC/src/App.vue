@@ -58,7 +58,21 @@ function closeNav() {
         </div>
      <!-- Countdown Timer -->
           </div>
-          <div id="third" class="w-full h-1/3 bg-transparent">03</div>
+          <div id="third" class="w-full h-1/3 bg-transparent">
+            <button class="relative">
+                  <img src="./components/Answer/ans1.png" alt="image" class="inset-0 w-full h-full object-cover hover:bg-blue-400">
+                  <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium">
+                    Button Text
+                  </span>
+                </button>
+
+                <button class="relative">
+                  <img src="./components/Answer/ans2.png" alt="image" class="inset-0 w-full h-full object-cover">
+                  <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium">
+                    Button Text
+                  </span>
+                </button>
+          </div>
         </div>
         <div id="right" class="w-1/12 h-full bg-blue-400">right</div>
       </div>
