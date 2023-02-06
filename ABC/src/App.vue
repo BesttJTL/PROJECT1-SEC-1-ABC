@@ -33,9 +33,7 @@
           <div id="first" class="w-full h-1/3 bg-transparent">01</div>
           <div id="second" class="w-full h-1/3 bg-transparent">02</div>
           <div id="third" class="w-full h-1/3 bg-transparent flex items-center justify-center">
-            <div class="flex flex-col">
-              <div class="flex flex-row justify-center">
-                
+                 
                 <button class="relative">
                   <img src="./components/Answer/ans1.png" alt="image" class="inset-0 w-full h-full object-cover hover:bg-blue-400">
                   <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium">
@@ -50,8 +48,6 @@
                   </span>
                 </button>
               
-              </div>
-            </div>
           </div>
         
         </div>
