@@ -1,4 +1,8 @@
 <script setup>
+import word from './components/data/word.json'
+let random = Math.floor(Math.random() * word.length);
+let randomEng = word[random].English
+
 </script>
  
 <template>
@@ -18,8 +22,8 @@
       <!-- Score -->
       <div id="score" class="bg-white border-4 border-black block box-border w-15 h-15 mt-5 rounded-xl self-start"><p>Score</p></div>
       <!-- Word -->
-      <div id="word" class="bg-white border-4 border-black block box-border w-1/6 h-2/5 text-center text-3xl font-extrabold font-serif  bg-center">
-        <p class="p-6">Word</p>
+      <div id="word" class="bg-white border-4 border-black block box-border w-1/6 h-2/5 text-center text-3xl font-extrabold font-serif  bg-center" >
+        <p class="p-6" >{{ randomEng }}</p>
       </div>
       <!-- button pause -->
       <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none " id="pause">
