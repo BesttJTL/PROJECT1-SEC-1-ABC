@@ -5,29 +5,42 @@ import { ref } from 'vue';
 const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
 
-
 function textshow(){
-//random = object[random]
-let random = word[Math.floor(Math.random() * word.length)]
-const wordbox = word.filter(x => x != random)
+//ทำการสุ่ม object ออกมาหนึ่งชิ้น 
+let randomobject = word[Math.floor(Math.random() * word.length)]
+//Clear object ที่ random มาเเล้วใส่ Array ใหม่
+const boxobject = word.filter(x => x != randomobject)
+//หา object ใหม่ที่จะมาสุ่มอีกฝั่ง
+let fakeobject = boxobject[Math.floor(Math.random()* boxobject.length)]
+//ทำการสุ่มจาก mathrandom เเละใส่เข้าไปใน random
+let newarray = []
+let mathrandom = Math.floor(Math.random()*100)
+    
+    if(mathrandom%2 === 0){
+      newarray.push(randomobject)
+      newarray.push(fakeobject)
+    }
+    else{
+      newarray.push(fakeobject)
+      newarray.push(randomobject)
+    }
 
-  function englishwordshow(){
-    return random.English
+//function show english word
+  function engshowword(){
+    return randomobject.English
   }
-  function thaiwordshow(){
-    return random.Thai
+//function การสุ่มคำตอบซ้ายขวาที่มาจาก if else 
+  function randomanswer(){
+    return newarray
+    }
+
+  return{
+    engshowword, 
+    randomanswer
   }
-  function wrongwordshow(){
-    let wrong = wordbox[Math.floor(Math.random() * wordbox.length)]
-    return wrong.Thai
-  }
-  return {
-    englishwordshow,
-    thaiwordshow,
-    wrongwordshow
-  }
+
 }
-const {englishwordshow, thaiwordshow, wrongwordshow} = textshow()
+const { engshowword, randomanswer } = textshow()
 
 const sec = ref(3)
 const countdown = () => {
@@ -67,7 +80,7 @@ function closeNav() {
             </div>
             <!-- Word -->
             <div id="word" class="bg-white border-4 border-black box-border w-64 h-2/5 text-center text-3xl bg-center">
-              <p class="pt-8" >{{ englishwordshow() }}</p>
+              <p class="pt-8" >{{ engshowword() }}</p>
             </div>
             <!-- button pause -->
               <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause">
@@ -86,11 +99,11 @@ function closeNav() {
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
             <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
-              {{ thaiwordshow() }}
+              {{ randomanswer()[0].Thai }}
             </button>
 
             <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
-              {{ wrongwordshow() }}
+              {{ randomanswer()[1].Thai }}
             </button>
           </div>
         </div>
