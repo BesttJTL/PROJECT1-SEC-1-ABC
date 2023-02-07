@@ -6,9 +6,6 @@ module.exports = {
   ],
   theme: {
     extend: {    
-      backgroundImage: {
-      'testbg': "url('./src/components/BackgroundPicture/background.png')"
-    }
   },   
   },
   plugins: [],
