@@ -2,6 +2,10 @@
 import word from './components/data/word.json'
 import { ref } from 'vue';
 
+const boy = 'images/maingif2.gif'
+const slime = 'images/slimegif.gif'
+
+
 function textshow(){
 //random = object[random]
 let random = word[Math.floor(Math.random() * word.length)]
@@ -53,16 +57,16 @@ function closeNav() {
 
         <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
 
-        <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('./src/components/background/background.png')]">
-          <img src="./components/character/maingif.gif" class="w-96 absolute bottom-56 left-8">
-          <img src="./components/character/slimegif.gif" class="w-80  absolute bottom-52 right-14">
-          <div id="first" class="w-full h-1/3  flex flex-row box-border content-center items-center justify-around">
+        <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('/images/background.png')]">
+          <img :src="boy" class="w-96 absolute bottom-52 left-8">
+          <img :src="slime" class="w-80  absolute bottom-52 right-32">
+          <div id="first" class="w-full h-1/3 flex flex-row box-border content-center items-center justify-around">
             <!-- Score -->
-            <div id="score" class="bg-white border-4 border-black box-border w-20 h-18 mt-5 self-start font-medium">
-              <p class="p-2">Score:</p>
+            <div id="score" class="bg-white border-4 border-black box-border w-20 h-18 mt-5 self-start">
+              <p class="p-2">Score :</p>
             </div>
             <!-- Word -->
-            <div id="word" class="bg-white border-4 border-black box-border w-64 h-2/5 text-center text-3xl font-medium bg-center">
+            <div id="word" class="bg-white border-4 border-black box-border w-64 h-2/5 text-center text-3xl bg-center">
               <p class="pt-8" >{{ englishwordshow() }}</p>
             </div>
             <!-- button pause -->
@@ -73,7 +77,7 @@ function closeNav() {
           <div id="second" class="w-full h-1/3 flex flex-col place-items-end">
             <!-- Countdown Timer -->
             <div>
-            <div class="flex flex-col gap-2 z-10 mt-2 mr-4 font-mono font-medium bg-white p-2 border-4 border-black">
+            <div class="flex flex-col gap-2 z-10 mt-2 mr-6 bg-white p-2 pr-5 border-4 border-black">
               <h1>Countdown Timer</h1>
               <p id="timeDisplay">Time Remaining: {{ sec }} Sec</p>
               <!-- <p id="timeup" v-if="sec === 0" class="text-red-500 inline-flex justify-center gap-2">Replay?<a href="#"><img src="./components/replay.png" class="w-6"></a></p> -->
@@ -81,19 +85,11 @@ function closeNav() {
             </div>
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl font-medium  bg-center hover:bg-slate-50">
-              <!-- <img src="./components/button/ans1.png" alt="image" class="inset-0 w-60 object-cover hover:bg-blue-400">
-              <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium mt-5">
-                {{ thaiwordshow() }}
-              </span> -->
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
               {{ thaiwordshow() }}
             </button>
 
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl font-medium  bg-center hover:bg-slate-50">
-              <!-- <img src="./components/button/ans2.png" alt="image" class="inset-0 w-60 object-cover">
-              <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium mt-5">
-                {{ wrongwordshow() }}
-              </span> -->
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
               {{ wrongwordshow() }}
             </button>
           </div>
