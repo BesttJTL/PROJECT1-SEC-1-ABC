@@ -59,6 +59,13 @@ function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
 
+//function score ถ้าตอบถูกให้เพิ่มคะแนน
+const score = ref(0)
+function scoreplus(){
+  score.value++
+}
+
+
 </script>
 
 <template>
@@ -75,8 +82,8 @@ function closeNav() {
           <img :src="slime" class="w-80  absolute bottom-52 right-32">
           <div id="first" class="w-full h-1/3 flex flex-row box-border content-center items-center justify-around">
             <!-- Score -->
-            <div id="score" class="bg-white border-4 border-black box-border w-20 h-18 mt-5 self-start">
-              <p class="p-2">Score :</p>
+            <div id="score" class="bg-white border-4 border-black box-border w-25 h-18 mt-5 self-start">
+              <p class="p-2">Score : {{ score }}</p>
             </div>
             <!-- Word -->
             <div id="word" class="bg-white border-4 border-black box-border w-64 h-2/5 text-center text-3xl bg-center">
