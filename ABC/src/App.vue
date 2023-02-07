@@ -4,6 +4,15 @@ import { ref } from 'vue';
 
 const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
+const heart = 'images/huajai.png'
+const check = ref()
+const score = ref(0)
+const next = ref(0)
+const pre = ref(1)
+// if(next === pre){
+//   ++pre
+//   textshow()
+// }
 
 function textshow(){
 //ทำการสุ่ม object ออกมาหนึ่งชิ้น 
@@ -33,14 +42,39 @@ let mathrandom = Math.floor(Math.random()*100)
   function randomanswer(){
     return newarray
     }
-
+//function ตรวจคำตอบ
+  function checkanswer(x,event){
+    ++next.value
+    console.log(next.value)
+    if(x === randomobject.Thai){
+      check.value = true
+      ++score.value
+      console.log(check.value)
+    }
+    else{
+      check.value = false
+      console.log(check.value)
+    }
+  }
   return{
     engshowword, 
-    randomanswer
+    randomanswer,
+    checkanswer
   }
-
 }
-const { engshowword, randomanswer } = textshow()
+const { engshowword, randomanswer,checkanswer } = textshow()
+//ทำการโชว์สีที่คำถาม 
+function clearcheck (){
+  if(check.value === undefined){
+    return {'background-color': 'white'}
+  }
+  else if(check.value === true){
+    return {'background-color': 'rgb(74 222 128)'}
+  }
+  else{
+    return {'background-color': 'rgb(248 113 113)'}
+  }
+}
 
 const sec = ref(3)
 const countdown = () => {
@@ -73,14 +107,20 @@ function closeNav() {
         <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('/images/background.png')]">
           <img :src="boy" class="w-96 absolute bottom-52 left-8">
           <img :src="slime" class="w-80  absolute bottom-52 right-32">
+          <div class="absolute flex flex-row space-x-3 mt-7 ml-3  h-auto w-auto ">
+          <img :src="heart" class="w-10 "/>
+          <img :src="heart" class="w-10 "/>
+          <img :src="heart" class="w-10 "/>
+          </div>
           <div id="first" class="w-full h-1/3 flex flex-row box-border content-center items-center justify-around">
             <!-- Score -->
-            <div id="score" class="bg-white border-4 border-black box-border w-20 h-18 mt-5 self-start">
-              <p class="p-2">Score :</p>
+            <div id="score" class="bg-white border-4 border-black box-border w-32 h-18 mt-5 self-start text-center">
+              <p class="p-2">Score : {{ score }}</p>
             </div>
             <!-- Word -->
-            <div id="word" class="bg-white border-4 border-black box-border w-64 h-2/5 text-center text-3xl bg-center">
-              <p class="pt-8" >{{ engshowword() }}</p>
+            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center "
+            :style=" clearcheck()">
+              <p class="pt-8 duration-700" >{{ engshowword() }}</p>
             </div>
             <!-- button pause -->
               <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause">
@@ -98,12 +138,14 @@ function closeNav() {
             </div>
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
-              {{ randomanswer()[0].Thai }}
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-300" 
+            @click="checkanswer(randomanswer()[0].Thai, $event)">
+            {{ randomanswer()[0].Thai }}
             </button>
 
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
-              {{ randomanswer()[1].Thai }}
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-300" 
+            @click="checkanswer(randomanswer()[1].Thai, $event)">
+            {{ randomanswer()[1].Thai }}
             </button>
           </div>
         </div>
