@@ -46,28 +46,31 @@ function closeNav() {
 
 <template>
     <div id="fullscreen" class="flex flex-col w-screen h-screen ">
-      <div id="top" class="h-1/6 w-full bg-lime-200">Header</div>
-      <div id="center" class="w-full h-4/6 flex flex-row ">
-        <div id="left" class="w-1/12 h-full bg-blue-200">left</div>
 
-        <div id="background" class="flex flex-col w-10/12 h-full relative bg-scroll bg-[length:100%_100%] bg-[url('./src/components/background/background.png')]">
-          <img src="./components/character/maingif.gif" class="w-64 absolute bottom-32 left-8">
-          <img src="./components/character/slimegif.gif" class="w-64  absolute bottom-32 right-14">
-          <div id="first" class="w-full h-1/3 border-8 border-red-800 flex flex-row box-border content-center items-center justify-around">
+      <!-- <div id="top" class="h-1/6 w-full bg-lime-200">Header</div> -->
+
+      <div id="center" class="w-full h-full flex flex-row">
+
+        <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
+
+        <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('./src/components/background/background.png')]">
+          <img src="./components/character/maingif.gif" class="w-96 absolute bottom-56 left-8">
+          <img src="./components/character/slimegif.gif" class="w-80  absolute bottom-52 right-14">
+          <div id="first" class="w-full h-1/3  flex flex-row box-border content-center items-center justify-around">
             <!-- Score -->
-            <div id="score" class="bg-white border-4 border-black box-border w-20 h-18 mt-5 self-start font-mono font-medium">
+            <div id="score" class="bg-white border-4 border-black box-border w-20 h-18 mt-5 self-start font-medium">
               <p class="p-2">Score:</p>
             </div>
             <!-- Word -->
-            <div id="word" class="bg-white border-4 border-black box-border w-60 h-2/5 text-center text-3xl font-medium font-mono bg-center">
-              <p class="pt-3" >{{ englishwordshow() }}</p>
+            <div id="word" class="bg-white border-4 border-black box-border w-64 h-2/5 text-center text-3xl font-medium bg-center">
+              <p class="pt-8" >{{ englishwordshow() }}</p>
             </div>
             <!-- button pause -->
-              <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none " id="pause">
+              <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause">
                 <font-awesome-icon icon="pause"  id="play-btn" class="fa-2x text-white text-center items-center content-center" />
               </button>
           </div>
-          <div id="second" class="w-full h-1/3 border-8 border-blue-800 flex flex-col place-items-end">
+          <div id="second" class="w-full h-1/3 flex flex-col place-items-end">
             <!-- Countdown Timer -->
             <div>
             <div class="flex flex-col gap-2 z-10 mt-2 mr-4 font-mono font-medium bg-white p-2 border-4 border-black">
@@ -77,30 +80,32 @@ function closeNav() {
             </div>
             </div>
           </div>
-          <div id="third" class="w-full h-1/3 border-8 border-green-700 flex justify-center space-x-16">
-            <button class="relative">
-              <img src="./components/button/ans1.png" alt="image" class="inset-0 w-60 object-cover hover:bg-blue-400">
+          <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl font-medium  bg-center hover:bg-slate-50">
+              <!-- <img src="./components/button/ans1.png" alt="image" class="inset-0 w-60 object-cover hover:bg-blue-400">
               <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium mt-5">
                 {{ thaiwordshow() }}
-              </span>
+              </span> -->
+              {{ thaiwordshow() }}
             </button>
 
-            <button class="relative">
-              <img src="./components/button/ans2.png" alt="image" class="inset-0 w-60 object-cover">
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl font-medium  bg-center hover:bg-slate-50">
+              <!-- <img src="./components/button/ans2.png" alt="image" class="inset-0 w-60 object-cover">
               <span class="absolute inset-0 w-full h-full flex items-center justify-center text-white text-xl font-medium mt-5">
                 {{ wrongwordshow() }}
-              </span>
+              </span> -->
+              {{ wrongwordshow() }}
             </button>
           </div>
         </div>
-        <div id="right" class="w-1/12  h-full bg-blue-400">right</div>
+
+        <!-- <div id="right" class="w-1/12  h-full bg-blue-400">right</div> -->
+
       </div>
 
-      <div id="bottom" class="h-1/6 w-full bg-lime-300">
-        Footer
-        <button type="submit" class="font-mono font-medium bg-white p-2 border-4 border-black" @click="openNav">Test Overlay</button>
-      </div>
-
+      <!-- <div id="bottom" class="h-1/6 w-full bg-lime-300"> </div> -->
+        <!-- Footer -->
+        <!-- <button type="submit" class="font-mono font-medium bg-white p-2 border-4 border-black" @click="openNav">Test Overlay</button>
 
       <div id="myNav" class="overlay">
         <div class="overlay-content flex flex-col justify-center content-center">
@@ -110,7 +115,7 @@ function closeNav() {
           </div>
         </div>
       </div>
-      
+       -->
     </div>
 </template>
 
