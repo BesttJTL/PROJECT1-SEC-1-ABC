@@ -1,102 +1,210 @@
 <script setup>
 import word from './components/data/word.json'
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
 const heart = 'images/huajai.png'
-const check = ref()
+const logoIndex = 'images/logo.png'
+///////////////////////////////////////////////
+// const arrayword = word
+// const checkword = []
+// const fakeword = []
+// let key = 0
+// //function โชว์ ENGLISH
+// function wordShow(){
+//   //ทำการนำ object ออกมาจาก random
+//   let randomWordobject = arrayword[Math.floor(Math.random() * arrayword.length)]
+//   //ทำการ push เก็บไว้เพื่อทำการใช้กับ twoWordShow
+//   checkword.push(randomWordobject)
+//   //สร้าง object มาเพื่อไม่ให้คำซ้ำกับ randomWordobject
+//   let fakeObject = arrayword.filter(x => x != randomWordobject)
+//   let fakeWordobject = fakeObject[Math.floor(Math.random() * fakeObject.length)]
+//   //push เก็บเข้าไปใน fake
+//   fakeword.push(fakeWordobject)
+//   // return Eng เพื่อนำไป Show
+//   return randomWordobject.English
+// }
+// console.log(checkword.length)
+// console.log(checkword[0])
+///////////////////////////////////////////
+
+
+// //ทำการสุ่ม object ออกมาหนึ่งชิ้น 
+// let randomobject = word[Math.floor(Math.random() * word.length)]
+// //Clear object ที่ random มาเเล้วใส่ Array ใหม่
+// let boxobject = word.filter(x => x != randomobject)
+// //หา object ใหม่ที่จะมาสุ่มอีกฝั่ง
+// let fakeobject = boxobject[Math.floor(Math.random()* boxobject.length)]
+
+// function textshow(){
+// //function show english word
+// function engshowword(){
+
+//     return randomobject.English
+//   }
+// //function การสุ่มคำตอบซ้ายขวาที่มาจาก if else 
+//   function randomanswer(){
+//     //ทำการสุ่มจาก mathrandom เเละใส่เข้าไปใน random
+// let newarray = []
+// let mathrandom = Math.floor(Math.random()*100)
+
+//     if(mathrandom%2 === 0){
+//       newarray=[]
+//       newarray.push(randomobject)
+//       newarray.push(fakeobject)
+//     }
+//     else{
+//       newarray=[]
+//       newarray.push(fakeobject)
+//       newarray.push(randomobject)
+//     }
+//     return newarray
+//     }
+
+// // //function ตรวจคำตอบ
+// //   function checkanswer(x,event){
+
+// //     if(x === randomobject.Thai){
+// //       check.value = true
+// //       ++score.value
+// //     }
+// //     else{
+// //       check.value = false
+// //     }
+// //   }
+//   return{
+//     engshowword, 
+//     randomanswer,
+//     checkanswer
+//   }
+// }
+
+// const { engshowword, randomanswer,checkanswer } = textshow()
+/////////////////////////
+// function wordrandom(){
+//   //ทำการสุ่ม object ออกมา
+//   let randomobject = word[Math.floor(Math.random() * word.length)]
+//   return randomobject
+// }
+
+// function engShow(x){
+//   return x.English
+// }
+// function answerShow(x){
+//   let newarray = []
+//   let mathrandom = Math.floor(Math.random()*100)
+
+//     if(mathrandom % 2 === 0){
+//       newarray=[]
+//       newarray.push(randomobject)
+//       newarray.push(fakeobject)
+//     }
+//     else{
+//       newarray=[]
+//       newarray.push(fakeobject)
+//       newarray.push(randomobject)
+//     }
+//     return newarray
+// }
+////// static function
+const box = []
+const array = word
+let answer = []
+const show = ref()
 const score = ref(0)
 
-function textshow(){
-//ทำการสุ่ม object ออกมาหนึ่งชิ้น 
-let randomobject = word[Math.floor(Math.random() * word.length)]
-//Clear object ที่ random มาเเล้วใส่ Array ใหม่
-const boxobject = word.filter(x => x != randomobject)
-//หา object ใหม่ที่จะมาสุ่มอีกฝั่ง
-let fakeobject = boxobject[Math.floor(Math.random()* boxobject.length)]
-//ทำการสุ่มจาก mathrandom เเละใส่เข้าไปใน random
-let newarray = []
-let mathrandom = Math.floor(Math.random()*100)
-    
-    if(mathrandom%2 === 0){
-      newarray.push(randomobject)
-      newarray.push(fakeobject)
-    }
-    else{
-      newarray.push(fakeobject)
-      newarray.push(randomobject)
-    }
-
-//function show english word
-  function engshowword(){
-    return randomobject.English
-  }
-//function การสุ่มคำตอบซ้ายขวาที่มาจาก if else 
-  function randomanswer(){
-    return newarray
-    }
-//function ตรวจคำตอบ
-  function checkanswer(x,event){
-
-    if(x === randomobject.Thai){
-      check.value = true
-      ++score.value
-    }
-    else{
-      check.value = false
-    }
-  }
-  return{
-    engshowword, 
-    randomanswer,
-    checkanswer
-  }
+function random(){
+  let randomobject = array[Math.floor(Math.random() * array.length)]
+  box[0] = randomobject
+  answerRandom()
+  console.log(randomobject)
+  return randomobject.English
 }
+random()
 
-const { engshowword, randomanswer,checkanswer } = textshow()
+function answerRandom(){
+  let trueword = box[0]
+  let fakegroup = array.filter(x => x != trueword)
+  let fakeword = fakegroup[Math.floor(Math.random() * fakegroup.length)]
+  let mathrandom = Math.floor(Math.random() * 100)
 
-//ทำการโชว์สีเฉลย
-function clearcheck (){
-  if(check.value === undefined){
-    return {'background-color': 'white'}
-  }
-  else if(check.value === true){
-    return {'background-color': 'rgb(74 222 128)'}
+  if(mathrandom % 2 === 0){
+    answer[0] = trueword.Thai
+    answer[1] = fakeword.Thai
   }
   else{
-    return {'background-color': 'rgb(248 113 113)'}
+    answer[0] = fakeword.Thai
+    answer[1] = trueword.Thai
   }
+  return answer
 }
 
-const sec = ref(3)
-const countdown = () => {
-  const seconds = sec
-  if(sec.value <= 1 ){
-    clearInterval(intervalTime)
-  }
-  sec.value--
-  return countdown
+function leftanswer(x){
+  return x[0]
 }
 
-function openNav() {
-  document.getElementById("myNav").style.width = "100%";
+function rightanswer(x){
+  return x[1]
 }
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
+////// addEvent
+function checkanswer(x){
+  if(x === undefined){
+    show.value = {'background-color': 'white'}
+  }
+  else if(x === box[0].Thai){
+    ++score.value
+    show.value = {'background-color': 'rgb(74 222 128)'}
+    random()
+  }
+  else{
+    ++score.value
+    show.value = {'background-color': 'rgb(248 113 113)'}
+  }
 }
+// randomword()
+// console.log(x)
+// function clearword(){
+//   let wordobject = randomword()
+//   let boxword = word.filter(x => x != wordobject)
+
+// }
+//ทำการโชว์สีเฉลย
+// function clearcheck (){
+//   if(check.value === undefined){
+//     return {'background-color': 'white'}
+//   }
+//   else if(check.value === true){
+//     return {'background-color': 'rgb(74 222 128)'}
+//   }
+//   else{
+//     return {'background-color': 'rgb(248 113 113)'}
+//   }
+// }
+
+// const sec = ref(3)
+// const countdown = () => {
+//   const seconds = sec
+//   if(sec.value <= 1 ){
+//     clearInterval(intervalTime)
+//   }
+//   sec.value--
+//   return countdown
+// }
+
+// function openNav() {
+//   document.getElementById("myNav").style.width = "100%";
+// }
+// function closeNav() {
+//   document.getElementById("myNav").style.width = "0%";
+// }
 
 </script>
 
 <template>
     <div id="fullscreen" class="flex flex-col w-screen h-screen ">
-
       <!-- <div id="top" class="h-1/6 w-full bg-lime-200">Header</div> -->
-
-      <div id="center" class="w-full h-full flex flex-row">
-
         <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
-
         <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('/images/background.png')]">
           <img :src="boy" class="w-96 absolute bottom-52 left-8">
           <img :src="slime" class="w-80  absolute bottom-52 right-32">
@@ -111,8 +219,9 @@ function closeNav() {
               <p class="p-2">Score : {{ score }}</p>
             </div>
             <!-- Word -->
-            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center " :style="clearcheck()">
-              <p class="pt-8 duration-700" >{{ engshowword() }}</p>
+            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center"
+            :style="show" >
+              <p class="pt-8 duration-700" >{{ box[0].English }}</p>
             </div>
             <!-- button pause -->
               <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause">
@@ -124,26 +233,23 @@ function closeNav() {
             <div>
             <div class="flex flex-col gap-2 z-10 mt-2 mr-6 bg-white p-2 pr-5 border-4 border-black">
               <h1>Countdown Timer</h1>
-              <p id="timeDisplay">Time Remaining: {{ sec }} Sec</p>
+              <p id="timeDisplay">Time Remaining: {{  }} Sec</p>
               <!-- <p id="timeup" v-if="sec === 0" class="text-red-500 inline-flex justify-center gap-2">Replay?<a href="#"><img src="./components/replay.png" class="w-6"></a></p> -->
             </div>
             </div>
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
             <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-300" 
-            @click="checkanswer(randomanswer()[0].Thai, $event)">
-            {{ randomanswer()[0].Thai }}
+            @click="checkanswer(answer[0])">
+            {{ leftanswer(answer) }}
             </button>
-
             <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-300" 
-            @click="checkanswer(randomanswer()[1].Thai, $event)">
-            {{ randomanswer()[1].Thai }}
+            @click="checkanswer(answer[1])">
+            {{ rightanswer(answer) }}
             </button>
           </div>
         </div>
-
         <!-- <div id="right" class="w-1/12  h-full bg-blue-400">right</div> -->
-
       </div>
 
       <!-- <div id="bottom" class="h-1/6 w-full bg-lime-300"> </div> -->
@@ -159,10 +265,98 @@ function closeNav() {
         </div>
       </div>
        -->
-    </div>
 </template>
 
 <style scoped>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+#card {
+    width: 600px;
+    height: 350px;
+    transition: 0.5s;
+}
+#card #circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#card #circle::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #d83133;
+    clip-path: circle(120px at center);
+    transition: 0.5s;
+}
+#card:hover #circle::before{
+    background: #0065c3;
+    clip-path: circle(400px at center);
+}
+#card img{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+#card:hover img{
+    left: 78%;
+    height: 400px;
+}
+#card #content {
+    position: relative;
+    width: 50%;
+    left: 20%;
+    padding: 20px 20px 20px 40px;
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+#card:hover #content{
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+#card #content h2{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+#card #content p{
+    color: #fff;
+}
+#card #content a{
+    position: relative;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #fff;
+    color: #111;
+    margin-top: 10px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.5s;
+}
 .overlay {
   height: 100%;
   width: 0;
