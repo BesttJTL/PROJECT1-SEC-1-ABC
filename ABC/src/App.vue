@@ -158,7 +158,7 @@ function checkanswer(x){
     random()
   }
   else{
-    ++score.value
+    --score.value
     show.value = {'background-color': 'rgb(248 113 113)'}
   }
 }
