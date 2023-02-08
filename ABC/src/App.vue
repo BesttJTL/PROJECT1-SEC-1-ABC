@@ -7,12 +7,6 @@ const slime = 'images/slimegif.gif'
 const heart = 'images/huajai.png'
 const check = ref()
 const score = ref(0)
-const next = ref(0)
-const pre = ref(1)
-// if(next === pre){
-//   ++pre
-//   textshow()
-// }
 
 function textshow(){
 //ทำการสุ่ม object ออกมาหนึ่งชิ้น 
@@ -44,16 +38,13 @@ let mathrandom = Math.floor(Math.random()*100)
     }
 //function ตรวจคำตอบ
   function checkanswer(x,event){
-    ++next.value
-    console.log(next.value)
+
     if(x === randomobject.Thai){
       check.value = true
       ++score.value
-      console.log(check.value)
     }
     else{
       check.value = false
-      console.log(check.value)
     }
   }
   return{
@@ -62,8 +53,10 @@ let mathrandom = Math.floor(Math.random()*100)
     checkanswer
   }
 }
+
 const { engshowword, randomanswer,checkanswer } = textshow()
-//ทำการโชว์สีที่คำถาม 
+
+//ทำการโชว์สีเฉลย
 function clearcheck (){
   if(check.value === undefined){
     return {'background-color': 'white'}
@@ -118,8 +111,7 @@ function closeNav() {
               <p class="p-2">Score : {{ score }}</p>
             </div>
             <!-- Word -->
-            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center "
-            :style=" clearcheck()">
+            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center " :style="clearcheck()">
               <p class="pt-8 duration-700" >{{ engshowword() }}</p>
             </div>
             <!-- button pause -->
