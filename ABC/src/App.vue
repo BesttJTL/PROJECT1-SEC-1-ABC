@@ -6,113 +6,18 @@ const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
 const heart = 'images/huajai.png'
 const logoIndex = 'images/logo.png'
-///////////////////////////////////////////////
-// const arrayword = word
-// const checkword = []
-// const fakeword = []
-// let key = 0
-// //function โชว์ ENGLISH
-// function wordShow(){
-//   //ทำการนำ object ออกมาจาก random
-//   let randomWordobject = arrayword[Math.floor(Math.random() * arrayword.length)]
-//   //ทำการ push เก็บไว้เพื่อทำการใช้กับ twoWordShow
-//   checkword.push(randomWordobject)
-//   //สร้าง object มาเพื่อไม่ให้คำซ้ำกับ randomWordobject
-//   let fakeObject = arrayword.filter(x => x != randomWordobject)
-//   let fakeWordobject = fakeObject[Math.floor(Math.random() * fakeObject.length)]
-//   //push เก็บเข้าไปใน fake
-//   fakeword.push(fakeWordobject)
-//   // return Eng เพื่อนำไป Show
-//   return randomWordobject.English
-// }
-// console.log(checkword.length)
-// console.log(checkword[0])
-///////////////////////////////////////////
 
-
-// //ทำการสุ่ม object ออกมาหนึ่งชิ้น 
-// let randomobject = word[Math.floor(Math.random() * word.length)]
-// //Clear object ที่ random มาเเล้วใส่ Array ใหม่
-// let boxobject = word.filter(x => x != randomobject)
-// //หา object ใหม่ที่จะมาสุ่มอีกฝั่ง
-// let fakeobject = boxobject[Math.floor(Math.random()* boxobject.length)]
-
-// function textshow(){
-// //function show english word
-// function engshowword(){
-
-//     return randomobject.English
-//   }
-// //function การสุ่มคำตอบซ้ายขวาที่มาจาก if else 
-//   function randomanswer(){
-//     //ทำการสุ่มจาก mathrandom เเละใส่เข้าไปใน random
-// let newarray = []
-// let mathrandom = Math.floor(Math.random()*100)
-
-//     if(mathrandom%2 === 0){
-//       newarray=[]
-//       newarray.push(randomobject)
-//       newarray.push(fakeobject)
-//     }
-//     else{
-//       newarray=[]
-//       newarray.push(fakeobject)
-//       newarray.push(randomobject)
-//     }
-//     return newarray
-//     }
-
-// // //function ตรวจคำตอบ
-// //   function checkanswer(x,event){
-
-// //     if(x === randomobject.Thai){
-// //       check.value = true
-// //       ++score.value
-// //     }
-// //     else{
-// //       check.value = false
-// //     }
-// //   }
-//   return{
-//     engshowword, 
-//     randomanswer,
-//     checkanswer
-//   }
-// }
-
-// const { engshowword, randomanswer,checkanswer } = textshow()
-/////////////////////////
-// function wordrandom(){
-//   //ทำการสุ่ม object ออกมา
-//   let randomobject = word[Math.floor(Math.random() * word.length)]
-//   return randomobject
-// }
-
-// function engShow(x){
-//   return x.English
-// }
-// function answerShow(x){
-//   let newarray = []
-//   let mathrandom = Math.floor(Math.random()*100)
-
-//     if(mathrandom % 2 === 0){
-//       newarray=[]
-//       newarray.push(randomobject)
-//       newarray.push(fakeobject)
-//     }
-//     else{
-//       newarray=[]
-//       newarray.push(fakeobject)
-//       newarray.push(randomobject)
-//     }
-//     return newarray
-// }
 ////// static function
 const box = []
 const array = word
 let answer = []
 const show = ref()
 const score = ref(0)
+const hp = ref(3)
+const hideone = ref()
+const hidetwo = ref()
+const hidethree = ref()
+random()
 
 function random(){
   let randomobject = array[Math.floor(Math.random() * array.length)]
@@ -121,7 +26,6 @@ function random(){
   console.log(randomobject)
   return randomobject.English
 }
-random()
 
 function answerRandom(){
   let trueword = box[0]
@@ -155,50 +59,30 @@ function checkanswer(x){
   else if(x === box[0].Thai){
     ++score.value
     show.value = {'background-color': 'rgb(74 222 128)'}
-    random()
   }
   else{
-    --score.value
+    score.value = 0
+    --hp.value
+    heartattack()
     show.value = {'background-color': 'rgb(248 113 113)'}
   }
+  setTimeout(function() {
+  show.value = {'background-color': 'white'}
+  random()
+  },600)
 }
-// randomword()
-// console.log(x)
-// function clearword(){
-//   let wordobject = randomword()
-//   let boxword = word.filter(x => x != wordobject)
-
-// }
-//ทำการโชว์สีเฉลย
-// function clearcheck (){
-//   if(check.value === undefined){
-//     return {'background-color': 'white'}
-//   }
-//   else if(check.value === true){
-//     return {'background-color': 'rgb(74 222 128)'}
-//   }
-//   else{
-//     return {'background-color': 'rgb(248 113 113)'}
-//   }
-// }
-
-// const sec = ref(3)
-// const countdown = () => {
-//   const seconds = sec
-//   if(sec.value <= 1 ){
-//     clearInterval(intervalTime)
-//   }
-//   sec.value--
-//   return countdown
-// }
-
-// function openNav() {
-//   document.getElementById("myNav").style.width = "100%";
-// }
-// function closeNav() {
-//   document.getElementById("myNav").style.width = "0%";
-// }
-
+function heartattack(){
+  if(hp.value === 2){
+    hideone.value = {'visibility': 'hidden'}
+  }
+  else if(hp.value === 1){
+    hidetwo.value = {'visibility': 'hidden'}
+  }
+  else{
+    hidethree.value = {'visibility': 'hidden'}
+    // ไอพีทำ Show GAMEOVER 
+  }
+}
 </script>
 
 <template>
@@ -209,9 +93,9 @@ function checkanswer(x){
           <img :src="boy" class="w-96 absolute bottom-52 left-8">
           <img :src="slime" class="w-80  absolute bottom-52 right-32">
           <div class="absolute flex flex-row space-x-3 mt-7 ml-3  h-auto w-auto ">
-          <img :src="heart" class="w-10 "/>
-          <img :src="heart" class="w-10 "/>
-          <img :src="heart" class="w-10 "/>
+          <img :src="heart" class="w-10 " :style="hidethree"/>
+          <img :src="heart" class="w-10 " :style="hidetwo"/>
+          <img :src="heart" class="w-10 " :style="hideone"/>
           </div>
           <div id="first" class="w-full h-1/3 flex flex-row box-border content-center items-center justify-around">
             <!-- Score -->
@@ -219,8 +103,7 @@ function checkanswer(x){
               <p class="p-2">Score : {{ score }}</p>
             </div>
             <!-- Word -->
-            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center"
-            :style="show" >
+            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center " :style="show">
               <p class="pt-8 duration-700" >{{ box[0].English }}</p>
             </div>
             <!-- button pause -->
@@ -239,11 +122,11 @@ function checkanswer(x){
             </div>
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-300" 
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300" 
             @click="checkanswer(answer[0])">
             {{ leftanswer(answer) }}
             </button>
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-300" 
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300 " 
             @click="checkanswer(answer[1])">
             {{ rightanswer(answer) }}
             </button>
@@ -268,6 +151,7 @@ function checkanswer(x){
 </template>
 
 <style scoped>
+
 *{
     margin: 0;
     padding: 0;
