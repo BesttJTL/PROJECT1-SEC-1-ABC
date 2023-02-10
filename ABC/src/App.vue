@@ -80,7 +80,7 @@ function heartattack(){
   }
   else{
     hidethree.value = {'visibility': 'hidden'}
-    // ไอพีทำ Show GAMEOVER 
+    
   }
 }
 </script>
