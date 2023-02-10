@@ -78,14 +78,41 @@ function heartattack(){
   else if(hp.value === 1){
     hidetwo.value = {'visibility': 'hidden'}
   }
+  else if(hp.value < 0){
+    //ป๊อปอัพเมื่อเล่นจบและแสดงคะแนน
+    gameOver.value = true
+  }
   else{
     hidethree.value = {'visibility': 'hidden'}
     
   }
 }
+function gameOver (){
+  if(hp.value < 0){
+    //ป๊อปอัพเมื่อเล่นจบและแสดงคะแนน
+    gameOver.value = true
+  }
+}
+function play(){
+  if(gameOver.value === true){
+    gameOver.value = false
+    score.value = 0
+    hp.value = 3
+    hideone.value = {'visibility': 'visible'}
+    hidetwo.value = {'visibility': 'visible'}
+    hidethree.value = {'visibility': 'visible'}
+  }
+  else{
+    gameOver.value = true
+  }
+}
+
+const whenGameOver = '<p>Game Over</p> <p>Score : {{ score }}</p> <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause"> <font-awesome-icon icon="play"  id="play-btn" class="fa-2x text-white text-center items-center content-center" /> </button>'
 </script>
 
 <template>
+  <div v-show="gameOver">
+      <p v-html="whenGameOver"></p>
     <div id="fullscreen" class="flex flex-col w-screen h-screen ">
       <!-- <div id="top" class="h-1/6 w-full bg-lime-200">Header</div> -->
         <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
@@ -147,7 +174,7 @@ function heartattack(){
           </div>
         </div>
       </div>
-       -->
+       --></div>
 </template>
 
 <style scoped>
