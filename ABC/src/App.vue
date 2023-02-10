@@ -61,7 +61,7 @@ function checkanswer(x){
     show.value = {'background-color': 'rgb(74 222 128)'}
   }
   else{
-    score.value = 0
+    // score.value = 0
     --hp.value
     heartattack()
     show.value = {'background-color': 'rgb(248 113 113)'}
