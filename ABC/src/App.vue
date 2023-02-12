@@ -108,7 +108,7 @@ function play(){
 }
 
 const whenGameOver = '<p class="text-red-500 text-3xl">Game Over!!!</p> <p>Score : {{ score }}</p>'
-const reloadBtn = location.reload();
+// const reloadBtn = onclick.window.location.reload()
 </script>
 
 <template>
