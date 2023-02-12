@@ -107,12 +107,11 @@ function play(){
   }
 }
 
-const whenGameOver = '<p>Game Over</p> <p>Score : {{ score }}</p> <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause"> <font-awesome-icon icon="play"  id="play-btn" class="fa-2x text-white text-center items-center content-center" /> </button>'
+const whenGameOver = '<p class="text-red-500 text-3xl">Game Over!!!</p> <p>Score : {{ score }}</p>'
+const reloadBtn = location.reload();
 </script>
 
 <template>
-  <div v-show="gameOver">
-      <p v-html="whenGameOver"></p>
     <div id="fullscreen" class="flex flex-col w-screen h-screen ">
       <!-- <div id="top" class="h-1/6 w-full bg-lime-200">Header</div> -->
         <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
@@ -174,7 +173,11 @@ const whenGameOver = '<p>Game Over</p> <p>Score : {{ score }}</p> <button @click
           </div>
         </div>
       </div>
-       --></div>
+       -->
+       <div v-show="gameOver" id="overG" class="w-screen h-screen flex flex-col items-center justify-center">
+          <p v-html="whenGameOver"></p>
+          <button @click="play()" id="reloadBtn" class="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Play again</button>
+       </div>
 </template>
 
 <style scoped>
@@ -289,5 +292,8 @@ body {
   background-color: #3b82f6;
   color: black;
   transition: 0.5s;
+}
+#overG {
+  background-color: 	#7fffd4;
 }
 </style>
