@@ -15,7 +15,6 @@ const hp = ref(3)
 const hideone = ref()
 const hidetwo = ref()
 const hidethree = ref()
-let time = ref(3)
 random()
 
 function openNav() {
@@ -25,31 +24,33 @@ function openNav() {
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
-const countdown = setInterval(() => {
-  if(time > 0){
-    setTimeout(() => {
-      if(time === 0){
-        clearInterval()
-      }
-      time-=1
-      countdown()
-    })
-  }
-}, 1000)
+
+// const countdown = setInterval(() => {
+//   if(time > 0){
+//     setTimeout(() => {
+//       if(time === 0){
+//         clearInterval()
+
+//       }
+//       time-=1
+//       countdown()
+//     })
+//   }
+// }, 1000)
 
 
 function random(){
-  let randomobject = array[Math.floor(Math.random() * array.length)]
-  box[0] = randomobject
+  let randomobject = array[Math.floor(Math.random() * array.length)] //random words with specific range.
+  box[0] = randomobject //keep randomed word at first position in new array
   answerRandom()
   console.log(randomobject)
   return randomobject.English
 }
 
 function answerRandom(){
-  let trueword = box[0] // right answer is in the first array index
-  let fakegroup = array.filter(x => x != trueword) 
-  let fakeword = fakegroup[Math.floor(Math.random() * fakegroup.length)]
+  let trueword = box[0] // right answer is in the first array index.
+  let fakegroup = array.filter(x => x != trueword)  // pick wrong ans from the first element in array which is filtered by not select a correct answer in the array.
+  let fakeword = fakegroup[Math.floor(Math.random() * fakegroup.length)] // random wrong word.
   let mathrandom = Math.floor(Math.random() * 100)
   if(mathrandom % 2 === 0){
     answer[0] = trueword.Thai
@@ -134,11 +135,10 @@ const reload = () =>{
           <div id="second" class="w-full h-1/3 flex flex-col place-items-end">
             <!-- Countdown Timer -->
             <div>
-            <div class="flex flex-col gap-2 z-10 mt-2 mr-6 bg-white p-2 pr-5 border-4 border-black">
+            <!-- <div class="flex flex-col gap-2 z-10 mt-2 mr-6 bg-white p-2 pr-5 border-4 border-black">
               <h1>Countdown Timer</h1>
               <p id="timeDisplay">Time Remaining: {{ time }} Sec</p>
-              <!-- <p id="timeup" v-if="sec === 0" class="text-red-500 inline-flex justify-center gap-2">Replay?<a href="#"><img src="./components/replay.png" class="w-6"></a></p> -->
-            </div>
+            </div> -->
             </div>
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
@@ -161,13 +161,7 @@ const reload = () =>{
           </div>
         </div>
       </div>
-       </div>
-
-      <!-- <div id="bottom" class="h-1/6 w-full bg-lime-300"></div>  -->
-        <!-- Footer -->
-        
-       
-       
+       </div>       
 </template>
 
 <style scoped>
@@ -196,7 +190,7 @@ body {
     overflow: hidden;
 }
 #card #circle::before{
-    content: '';
+    content: ''; 
     position: absolute;
     top: 0;
     left: 0;
