@@ -5,6 +5,10 @@ const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
 const heart = 'images/huajai.png'
 const logoIndex = 'images/logo.png'
+const attackBoy = 'images/dead.png'
+const boyAttack = 'images/mainatkgif.gif'
+const attackSlime = 'images/slimeded.png'
+
 ////// static function
 const box = []
 const array = word
@@ -69,6 +73,30 @@ function leftanswer(x){
 function rightanswer(x){
   return x[1]
 }
+
+//function ตัวละครโดนโจมตีเมื่อตอบผิด
+function changeImage() {
+  const imageElement = document.querySelector('img#boy');
+  imageElement.src = attackBoy;
+  setTimeout(function() {
+    imageElement.src = boy;
+  }, 1000);
+}
+
+//function ตัวละครไปโจมตีเมื่อตอบถูก
+function changeGIF() {
+  const imageElement = document.querySelector('img#boy');
+  imageElement.src = boyAttack;
+  setTimeout(function() {
+    imageElement.src = boy;
+  }, 1000);
+  const slimeElement = document.querySelector('img#slime');
+  slimeElement.src = attackSlime;
+  setTimeout(function() {
+    slimeElement.src = slime;
+  }, 1000);
+}
+
 ////// addEvent
 function checkanswer(x){
   if(x === undefined){
@@ -77,12 +105,14 @@ function checkanswer(x){
   else if(x === box[0].Thai){
     ++score.value
     show.value = {'background-color': 'rgb(74 222 128)'}
+    changeGIF()
   }
   else{
     score.value = 0
     --hp.value
     heartattack()
     show.value = {'background-color': 'rgb(248 113 113)'}
+    changeImage()
   }
   setTimeout(function() {
   show.value = {'background-color': 'white'}
@@ -131,8 +161,8 @@ const hide =() =>{
       <!-- <div id="top" class="h-1/6 w-full bg-lime-200">Header</div> -->
         <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
         <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('/images/background.png')]">
-          <img :src="boy" class="w-96 absolute bottom-52 left-8">
-          <img :src="slime" class="w-80  absolute bottom-52 right-32">
+          <img id="boy" :src="boy" class="w-96 absolute bottom-52 left-8">
+          <img id="slime" :src="slime" class="w-80  absolute bottom-52 right-32">
           <div class="absolute flex flex-row space-x-3 mt-7 ml-3  h-auto w-auto ">
           <img :src="heart" class="w-10 " :style="hidethree"/>
           <img :src="heart" class="w-10 " :style="hidetwo"/>
