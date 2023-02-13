@@ -6,6 +6,15 @@ const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
 const heart = 'images/huajai.png'
 const logoIndex = 'images/logo.png'
+const attackBoy = 'images/mainatkgif.gif';
+//function ตัวละครโดนโจมตีเมื่อตอบผิด
+function changeImage() {
+  const imageElement = document.querySelector('img');
+  imageElement.src = attackBoy;
+  setTimeout(function() {
+    imageElement.src = boy;
+  }, 1000);
+}
 
 ////// static function
 const box = []
@@ -65,6 +74,7 @@ function checkanswer(x){
     --hp.value
     heartattack()
     show.value = {'background-color': 'rgb(248 113 113)'}
+    changeImage()
   }
   setTimeout(function() {
   show.value = {'background-color': 'white'}
