@@ -15,6 +15,7 @@ const hp = ref(3)
 const hideone = ref()
 const hidetwo = ref()
 const hidethree = ref()
+let time = ref(3)
 random()
 
 function openNav() {
@@ -24,6 +25,17 @@ function openNav() {
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
+const countdown = setInterval(() => {
+  if(time > 0){
+    setTimeout(() => {
+      if(time === 0){
+        clearInterval()
+      }
+      time-=1
+      countdown()
+    })
+  }
+}, 1000)
 
 
 function random(){
@@ -124,7 +136,7 @@ const reload = () =>{
             <div>
             <div class="flex flex-col gap-2 z-10 mt-2 mr-6 bg-white p-2 pr-5 border-4 border-black">
               <h1>Countdown Timer</h1>
-              <p id="timeDisplay">Time Remaining: {{  }} Sec</p>
+              <p id="timeDisplay">Time Remaining: {{ time }} Sec</p>
               <!-- <p id="timeup" v-if="sec === 0" class="text-red-500 inline-flex justify-center gap-2">Replay?<a href="#"><img src="./components/replay.png" class="w-6"></a></p> -->
             </div>
             </div>
