@@ -6,11 +6,21 @@ const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
 const heart = 'images/huajai.png'
 const logoIndex = 'images/logo.png'
-const attackBoy = 'images/mainatkgif.gif';
+const attackBoy = 'images/dead.png'
+const boyAttack = 'images/mainatkgif.gif'
 //function ตัวละครโดนโจมตีเมื่อตอบผิด
 function changeImage() {
   const imageElement = document.querySelector('img');
   imageElement.src = attackBoy;
+  setTimeout(function() {
+    imageElement.src = boy;
+  }, 1000);
+}
+
+//function ตัวละครไปโจมตีเมื่อตอบถูก
+function changeGIF() {
+  const imageElement = document.querySelector('img');
+  imageElement.src = boyAttack;
   setTimeout(function() {
     imageElement.src = boy;
   }, 1000);
@@ -68,6 +78,7 @@ function checkanswer(x){
   else if(x === box[0].Thai){
     ++score.value
     show.value = {'background-color': 'rgb(74 222 128)'}
+    changeGIF()
   }
   else{
     // score.value = 0
