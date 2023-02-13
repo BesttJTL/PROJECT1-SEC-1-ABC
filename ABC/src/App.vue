@@ -102,12 +102,32 @@ function heartattack(){
 }
 
 const reload = () =>{
-  document.location.reload()
+  document.location.href='./'
 }
+
+//hide page fn
+const hide =() =>{
+  let divParent = document.getElementById('parent')
+  let divContent = document.getElementById('fullscreen')
+  divParent.remove(divParent)
+  divContent.className='flex flex-col w-screen h-screen'
+} 
 </script>
 
 <template>
-    <div id="fullscreen" class="flex flex-col w-screen h-screen ">
+  <!-- index -->
+  <div class="w-screen h-screen flex flex-col items-center justify-center gap-y-8 bg-[url('images/background2b.png')] bg-[length:100%_100%] bg-center" id="parent">
+    <div class="flex pb-10">
+      <h1 class="text-8xl text-white text-bold">Game A B C</h1>
+    </div>
+      <div class="flex pb-32">
+        <a href="#fullscreen" class="btn justify-center items-center" @click="hide" id="btn">Let's Play</a>
+      </div>
+  </div>
+
+
+  <!-- game page -->
+    <div id="fullscreen" class="hidden">
       <!-- <div id="top" class="h-1/6 w-full bg-lime-200">Header</div> -->
         <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
         <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('/images/background.png')]">
@@ -157,7 +177,7 @@ const reload = () =>{
           <div class="overlay-content flex flex-col justify-center content-center">
             <div class="overlay-element block mt-80 gap-5 w-full h-full pt-4 ">
               <h1 class="text-red-500 text-4xl text-center flex justify-center">Game Over!</h1>
-              <button class="border-2 border-blue-400 text-white p-3 my-6 rounded-md text-xl font-bold" @click="reload">Play Again</button>
+              <button class="border-2 border-blue-400 text-white p-3 my-6 rounded-md text-xl font-bold" @click="reload">GO TO FIRST PAGE</button>
           </div>
         </div>
       </div>
@@ -165,94 +185,60 @@ const reload = () =>{
 </template>
 
 <style scoped>
+/* html, body {margin: 0; height: 100%; overflow-y: hidden} */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Mitr', sans-serif;
+
 }
 body {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    font-family: Arial;
+    
 }
-#card {
-    width: 600px;
-    height: 350px;
-    transition: 0.5s;
+h1{
+    padding: 1rem 3rem;
 }
-#card #circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-#card #circle::before{
-    content: ''; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #d83133;
-    clip-path: circle(120px at center);
-    transition: 0.5s;
-}
-#card:hover #circle::before{
-    background: #0065c3;
-    clip-path: circle(400px at center);
-}
-#card img{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 300px;
-    pointer-events: none;
-    transition: 0.5s;
-}
-#card:hover img{
-    left: 78%;
-    height: 400px;
-}
-#card #content {
-    position: relative;
-    width: 50%;
-    left: 20%;
-    padding: 20px 20px 20px 40px;
-    transition: 0.5s;
-    opacity: 0;
-    visibility: hidden;
-}
-#card:hover #content{
-    left: 0;
-    opacity: 1;
-    visibility: visible;
-}
-#card #content h2{
-    color: #fff;
+a {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem 3rem;
+    color: #f4f4f4;
     text-transform: uppercase;
-    font-size: 1em;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-#card #content p{
-    color: #fff;
-}
-#card #content a{
-    position: relative;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background: #fff;
-    color: #111;
-    margin-top: 10px;
-    display: inline-block;
+  }
+  #btn {
     text-decoration: none;
-    font-weight: 700;
-    transition: 0.5s;
-}
+    /* border: 3px solid rgb(35, 217, 230); */
+    position: relative;
+    overflow: hidden;
+  }
+  #btn:hover {
+    box-shadow: 1px 1px 25px 10px rgb(35, 217, 230);
+  }
+  #btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgb(248, 250, 250),
+      transparent
+    );
+    transition: all 650ms;
+  }
+
+  #btn:hover:before {
+    left: 100%;
+  }
 .overlay {
   height: 100%;
   width: 0;
