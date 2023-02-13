@@ -32,14 +32,6 @@ function changeGIF() {
   }, 1000);
 }
 
-function changeSlime(){
-  const imageElementS = document.querySelector('img');
-  imageElementS.src = attackSlime;
-  setTimeout(function() {
-    imageElementS.src = slime;
-  }, 1000);
-}
-
 
 ////// static function
 const box = []
