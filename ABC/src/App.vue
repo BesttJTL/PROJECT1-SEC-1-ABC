@@ -131,6 +131,7 @@ function heartattack(){
   }
 }
 
+//consult how to reload
 const reload = () =>{
   document.location.href='./'
 }
