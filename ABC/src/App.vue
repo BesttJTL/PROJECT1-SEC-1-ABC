@@ -80,7 +80,7 @@ function changeImage() {
   imageElement.src = attackBoy;
   setTimeout(function() {
     imageElement.src = boy;
-  }, 1000);
+  }, 600);
 }
 
 //function ตัวละครไปโจมตีเมื่อตอบถูก
@@ -89,12 +89,12 @@ function changeGIF() {
   imageElement.src = boyAttack;
   setTimeout(function() {
     imageElement.src = boy;
-  }, 1000);
+  }, 600);
   const slimeElement = document.querySelector('img#slime');
   slimeElement.src = attackSlime;
   setTimeout(function() {
     slimeElement.src = slime;
-  }, 1000);
+  }, 600);
 }
 
 ////// addEvent
@@ -108,7 +108,6 @@ function checkanswer(x){
     changeGIF()
   }
   else{
-    score.value = 0
     --hp.value
     heartattack()
     show.value = {'background-color': 'rgb(248 113 113)'}
