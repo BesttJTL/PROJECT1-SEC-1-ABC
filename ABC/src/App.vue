@@ -10,16 +10,16 @@ const boyAttack = 'images/mainatkgif.gif'
 const attackSlime = 'images/slimeded.png'
 
 ////// static function
-const box = []
-const array = word
-let answer = []
-const show = ref()
-const score = ref(0)
-const hp = ref(3)
-const hideone = ref()
-const hidetwo = ref()
-const hidethree = ref()
-random()
+// const box = []
+const array = word //กล่องคำศัพท์
+// let answer = []
+// const show = ref()
+// const score = ref(0)
+// const hp = ref(3)
+// const hideone = ref()
+// const hidetwo = ref()
+// const hidethree = ref()
+// random()
 
 function openNav() {
   document.getElementById("myNav").style.width = "100%";
@@ -42,37 +42,41 @@ function closeNav() {
 //   }
 // }, 1000)
 
+// comment ให้เพื่อนเขียน
+// function random(){
+//   let randomobject = array[Math.floor(Math.random() * array.length)] //random words with specific range.
+//   box[0] = randomobject //keep randomed word at first position in new array
+//   answerRandom()
+//   console.log(randomobject)
+//   return randomobject.English
+// }
 
-function random(){
-  let randomobject = array[Math.floor(Math.random() * array.length)] //random words with specific range.
-  box[0] = randomobject //keep randomed word at first position in new array
-  answerRandom()
-  console.log(randomobject)
-  return randomobject.English
-}
+// function answerRandom(){
+//   let trueword = box[0] // right answer is in the first array index.
+//   let fakegroup = array.filter(x => x != trueword)  // pick wrong ans from the first element in array which is filtered by not select a correct answer in the array.
+//   let fakeword = fakegroup[Math.floor(Math.random() * fakegroup.length)] // random wrong word.
+//   let mathrandom = Math.floor(Math.random() * 100)
+//   if(mathrandom % 2 === 0){
+//     answer[0] = trueword.Thai
+//     answer[1] = fakeword.Thai
+//   }
+//   else{
+//     answer[0] = fakeword.Thai
+//     answer[1] = trueword.Thai
+//   }
+//   return answer
 
-function answerRandom(){
-  let trueword = box[0] // right answer is in the first array index.
-  let fakegroup = array.filter(x => x != trueword)  // pick wrong ans from the first element in array which is filtered by not select a correct answer in the array.
-  let fakeword = fakegroup[Math.floor(Math.random() * fakegroup.length)] // random wrong word.
-  let mathrandom = Math.floor(Math.random() * 100)
-  if(mathrandom % 2 === 0){
-    answer[0] = trueword.Thai
-    answer[1] = fakeword.Thai
-  }
-  else{
-    answer[0] = fakeword.Thai
-    answer[1] = trueword.Thai
-  }
-  return answer
-
-}
-function leftanswer(x){
-  return x[0]
-}
-function rightanswer(x){
-  return x[1]
-}
+// }
+// function leftanswer(x){
+//   return x[0]
+// }
+// function rightanswer(x){
+//   return x[1]
+// }
+//////////////////////////
+// 1. โชว์คำศัพท์ภาษาอังกฤษ 
+// 2. โชว์คำศัพท์ภาษาไทย ทั้งสองข้าง ถูกเเละผิด
+// 3. ทำเรื่อง addEvent
 
 //function ตัวละครโดนโจมตีเมื่อตอบผิด
 function changeImage() {
@@ -98,37 +102,37 @@ function changeGIF() {
 }
 
 ////// addEvent
-function checkanswer(x){
-  if(x === undefined){
-    show.value = {'background-color': 'white'}
-  }
-  else if(x === box[0].Thai){
-    ++score.value
-    show.value = {'background-color': 'rgb(74 222 128)'}
-    changeGIF()
-  }
-  else{
-    --hp.value
-    heartattack()
-    show.value = {'background-color': 'rgb(248 113 113)'}
-    changeImage()
-  }
-  setTimeout(function() {
-  show.value = {'background-color': 'white'}
-  random()
-  },600)
-}
-function heartattack(){
-  if(hp.value === 2){
-    hideone.value = {'visibility': 'hidden'}
-  }
-  else if(hp.value === 1){
-    hidetwo.value = {'visibility': 'hidden'}
-  }
-  else{
-    hidethree.value = {'visibility': 'hidden'}
-  }
-}
+// function checkanswer(x){
+//   if(x === undefined){
+//     show.value = {'background-color': 'white'}
+//   }
+//   else if(x === box[0].Thai){
+//     ++score.value
+//     show.value = {'background-color': 'rgb(74 222 128)'}
+//     changeGIF()
+//   }
+//   else{
+//     --hp.value
+//     heartattack()
+//     show.value = {'background-color': 'rgb(248 113 113)'}
+//     changeImage()
+//   }
+//   setTimeout(function() {
+//   show.value = {'background-color': 'white'}
+//   random()
+//   },600)
+// }
+// function heartattack(){
+//   if(hp.value === 2){
+//     hideone.value = {'visibility': 'hidden'}
+//   }
+//   else if(hp.value === 1){
+//     hidetwo.value = {'visibility': 'hidden'}
+//   }
+//   else{
+//     hidethree.value = {'visibility': 'hidden'}
+//   }
+// }
 
 //consult how to reload
 const reload = () =>{
@@ -171,11 +175,12 @@ const hide =() =>{
           <div id="first" class="w-full h-1/3 flex flex-row box-border content-center items-center justify-around">
             <!-- Score -->
             <div id="score" class="bg-white border-4 border-black box-border w-32 h-18 mt-5 self-start text-center">
-              <p class="p-2">Score : {{ score }}</p>
+              <p class="p-2">Score : {{  }}</p>
             </div>
             <!-- Word -->
             <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center " :style="show">
-              <p class="pt-8 duration-700" >{{ box[0].English }}</p>
+              <p class="pt-8 duration-700" >{{  }}</p>
+              <!-- {{ box[0].English }} -->
             </div>
             <!-- button pause -->
               <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause">
@@ -193,12 +198,14 @@ const hide =() =>{
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
             <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300" 
-            @click="checkanswer(answer[0])">
-            {{ leftanswer(answer) }}
+            @click="">
+            <!-- @click="checkanswer(answer[0])", {{ leftanswer(answer) }} -->
+            {{  }}
             </button>
             <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300 " 
-            @click="checkanswer(answer[1])">
-            {{ rightanswer(answer) }}
+            @click="">
+            <!-- @click="checkanswer(answer[1])", {{ rightanswer(answer) }} -->
+            {{  }}
             </button>
           </div>
         </div>
