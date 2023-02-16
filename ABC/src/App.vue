@@ -25,7 +25,7 @@ const boyRef = ref(null)
 const slimeRef = ref(null)
 random()
 
-const openNav = (() =>{
+const showOverlay = (() =>{
   overlay.value.style.width = '100%'
 })
 
@@ -189,11 +189,11 @@ const hide =() =>{
           </div>
         </div>
         <!-- <div id="right" class="w-1/12  h-full bg-blue-400">right</div> -->
-      <div id="myNav" class="overlay" :class="hp === 0 ? openNav():''" ref="overlay">
+      <div id="myNav" class="overlay" :class="hp === 0 ? showOverlay():''" ref="overlay">
           <div class="overlay-content flex flex-col justify-center content-center">
             <div class="overlay-element block mt-80 gap-5 w-full h-full pt-4 ">
               <h1 class="text-red-500 text-4xl text-center flex justify-center">Game Over!</h1>
-              <button class="border-2 border-blue-400 text-white p-3 my-6 rounded-md text-xl font-bold" @click="reload">GO TO FIRST PAGE</button>
+              <button class="border-2 border-blue-400 text-white p-3 my-6 rounded-md text-xl font-bold" @click="reset">GO TO FIRST PAGE</button>
           </div>
         </div>
       </div>
