@@ -30,46 +30,23 @@ function openNav() {
   document.getElementById("myNav").style.width = "100%";
 }
 
-// function closeNav() {
-//   document.getElementById("myNav").style.width = "0%";
-// }
 
-// const countdown = setInterval(() => {
-//   if(time > 0){
-//     setTimeout(() => {
-//       if(time === 0){
-//         clearInterval()
-
-//       }
-//       time-=1
-//       countdown()
-//     })
-//   }
-// }, 1000)
-
-// comment ให้เพื่อนเขียน
+//function สุ่มคำศัพท์
 function random() {
-  const randomIndex = Math.floor(Math.random() * array.length)
-  box[0] = array[randomIndex]
-  answerRandom()
-  return box[0].English
+  const randomIndex = Math.floor(Math.random() * array.length) //สุ่มตำแหน่งของคำศัพท์ใน array
+  box[0] = array[randomIndex]                                  //เก็บคำศัพท์ที่สุ่มได้ไว้ใน box[0]
+  answerRandom()                                               
 }
+//function สุ่มคำตอบที่ผิด
 function answerRandom() {
-  const trueword = box[0].Thai;
-  const fakegroup = array.filter((word) => word.Thai !== trueword)
-  const fakeIndex = Math.floor(Math.random() * fakegroup.length)
-  const fakeword = fakegroup[fakeIndex].Thai
-  const mathrandom = Math.floor(Math.random() * 100)
-
-  if (mathrandom % 2 === 0) {
-    answer[0] = trueword
-    answer[1] = fakeword
+  const randomIndex = Math.floor(Math.random() * array.length) //สุ่มตำแหน่งของคำศัพท์ใน array
+  if (box[0].Thai === array[randomIndex].Thai) {        //เช็คว่าคำศัพท์ที่อยู่ใน box[0] นั้นเหมือนกับคำศัพท์ที่อยู่ใน array ตาม index ที่สุ่มได้หรือไม่ถ้าเหมือนกัน ให้เรียกใช้ฟังก์ชั่น answerRandom() ใหม่
+    answerRandom()
   } else {
-    answer[0] = fakeword
-    answer[1] = trueword
+    box[1] = array[randomIndex]           //ถ้าไม่เหมือนกัน ให้นำคำศัพท์ที่อยู่ใน array ตาม index ที่สุ่มได้ใส่ไว้ใน box[1]
+    answer = [box[0].Thai, box[1].Thai]   //นำคำศัพท์ที่อยู่ใน box[0] และ box[1] ใส่เป็น element array ของ answer
+    answer.sort(() => Math.random() - 0.5)  //สุ่มลำดับ element กัน
   }
-
-  return answer
 }
 
 function leftanswer(x) {
@@ -89,7 +66,7 @@ function changeImage() {
   boyRef.value.src = attackBoy
   setTimeout(() => {
     boyRef.value.src = boy
-  }, 1000);
+  }, 1000)
 }
 
 //function ตัวละครไปโจมตีเมื่อตอบถูก
