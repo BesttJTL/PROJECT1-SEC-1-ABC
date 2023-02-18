@@ -1,93 +1,190 @@
 <script setup>
 import word from './components/data/word.json'
-import { ref } from 'vue';
-
+import { ref, reactive } from 'vue';
 const boy = 'images/maingif2.gif'
 const slime = 'images/slimegif.gif'
+const heart = 'images/huajai.png'
+const logoIndex = 'images/logo.png'
+const attackBoy = 'images/dead.png'
+const boyAttack = 'images/mainatkgif.gif'
+const attackSlime = 'images/slimeded.png'
+const boyRef = ref(null)
+const slimeRef = ref(null)
 
-function textshow(){
-//ทำการสุ่ม object ออกมาหนึ่งชิ้น 
-let randomobject = word[Math.floor(Math.random() * word.length)]
-//Clear object ที่ random มาเเล้วใส่ Array ใหม่
-const boxobject = word.filter(x => x != randomobject)
-//หา object ใหม่ที่จะมาสุ่มอีกฝั่ง
-let fakeobject = boxobject[Math.floor(Math.random()* boxobject.length)]
-//ทำการสุ่มจาก mathrandom เเละใส่เข้าไปใน random
-let newarray = []
-let mathrandom = Math.floor(Math.random()*100)
-    
-    if(mathrandom%2 === 0){
-      newarray.push(randomobject)
-      newarray.push(fakeobject)
-    }
-    else{
-      newarray.push(fakeobject)
-      newarray.push(randomobject)
-    }
 
-//function show english word
-  function engshowword(){
-    return randomobject.English
-  }
-//function การสุ่มคำตอบซ้ายขวาที่มาจาก if else 
-  function randomanswer(){
-    return newarray
-    }
 
-  return{
-    engshowword, 
-    randomanswer
-  }
 
-}
-const { engshowword, randomanswer } = textshow()
-
-const sec = ref(3)
-const countdown = () => {
-  const seconds = sec
-  if(sec.value <= 1 ){
-    clearInterval(intervalTime)
-  }
-  sec.value--
-  return countdown
-}
+////// static function
+const box = []
+const array = word //กล่องคำศัพท์
+let answer = []
+const show = ref()
+const score = ref(0)
+const hp = ref(3)
+const hideone = ref()
+const hidetwo = ref()
+const hidethree = ref()
+random()
 
 function openNav() {
   document.getElementById("myNav").style.width = "100%";
 }
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
+
+// function closeNav() {
+//   document.getElementById("myNav").style.width = "0%";
+// }
+
+// const countdown = setInterval(() => {
+//   if(time > 0){
+//     setTimeout(() => {
+//       if(time === 0){
+//         clearInterval()
+
+//       }
+//       time-=1
+//       countdown()
+//     })
+//   }
+// }, 1000)
+
+// comment ให้เพื่อนเขียน
+function random() {
+  const randomIndex = Math.floor(Math.random() * array.length)
+  box[0] = array[randomIndex]
+  answerRandom()
+  return box[0].English
+}
+function answerRandom() {
+  const trueword = box[0].Thai;
+  const fakegroup = array.filter((word) => word.Thai !== trueword)
+  const fakeIndex = Math.floor(Math.random() * fakegroup.length)
+  const fakeword = fakegroup[fakeIndex].Thai
+  const mathrandom = Math.floor(Math.random() * 100)
+
+  if (mathrandom % 2 === 0) {
+    answer[0] = trueword
+    answer[1] = fakeword
+  } else {
+    answer[0] = fakeword
+    answer[1] = trueword
+  }
+
+  return answer
 }
 
-//function score ถ้าตอบถูกให้เพิ่มคะแนน
-const score = ref(0)
-function scoreplus(){
-  score.value++
+function leftanswer(x) {
+  return x[0]
 }
 
+function rightanswer(x) {
+  return x[1]
+}
+//////////////////////////
+// 1. โชว์คำศัพท์ภาษาอังกฤษ 
+// 2. โชว์คำศัพท์ภาษาไทย ทั้งสองข้าง ถูกเเละผิด
+// 3. ทำเรื่อง addEvent
 
+//function ตัวละครโดนโจมตีเมื่อตอบผิด
+function changeImage() {
+  boyRef.value.src = attackBoy
+  setTimeout(() => {
+    boyRef.value.src = boy
+  }, 1000);
+}
+
+//function ตัวละครไปโจมตีเมื่อตอบถูก
+const changeGIF = () =>{
+      boyRef.value.src = boyAttack;
+      setTimeout(() => {
+        boyRef.value.src = boy;
+        }, 1000);
+  
+      slimeRef.value.src = attackSlime;
+      setTimeout(() => {
+      slimeRef.value.src = slime;
+        }, 1000);
+  }
+
+////// addEvent
+function checkanswer(x){
+  if(x === undefined){
+    show.value = {'background-color': 'white'}
+  }
+  else if(x === box[0].Thai){
+    ++score.value
+    show.value = {'background-color': 'rgb(74 222 128)'}
+    changeGIF()
+  }
+  else{
+    --hp.value
+    heartattack()
+    show.value = {'background-color': 'rgb(248 113 113)'}
+    changeImage()
+  }
+  setTimeout(function() {
+  show.value = {'background-color': 'white'}
+  random()
+  },600)
+}
+function heartattack(){
+  if(hp.value === 2){
+    hideone.value = {'visibility': 'hidden'}
+  }
+  else if(hp.value === 1){
+    hidetwo.value = {'visibility': 'hidden'}
+  }
+  else{
+    hidethree.value = {'visibility': 'hidden'}
+  }
+}
+
+//consult how to reload
+const reload = () =>{
+  document.location.href='./'
+}
+
+//hide page fn
+const hide =() =>{
+  let divParent = document.getElementById('parent')
+  let divContent = document.getElementById('fullscreen')
+  divParent.remove(divParent)
+  divContent.className='flex flex-col w-screen h-screen'
+} 
 </script>
 
 <template>
-    <div id="fullscreen" class="flex flex-col w-screen h-screen ">
+  <!-- index -->
+  <div class="w-screen h-screen flex flex-col items-center justify-center gap-y-8 bg-[url('images/background2b.png')] bg-[length:100%_100%] bg-center" id="parent">
+    <div class="flex pb-10">
+      <h1 class="text-8xl text-white text-bold">Game A B C</h1>
+    </div>
+      <div class="flex pb-32">
+        <a href="#fullscreen" class="btn justify-center items-center" @click="hide" id="btn">Let's Play</a>
+      </div>
+  </div>
 
+
+  <!-- game page -->
+    <div id="fullscreen" class="hidden">
       <!-- <div id="top" class="h-1/6 w-full bg-lime-200">Header</div> -->
-
-      <div id="center" class="w-full h-full flex flex-row">
-
         <!-- <div id="left" class="w-1/12 h-full bg-blue-200">left</div> -->
-
         <div id="background" class="flex flex-col w-full h-full relative bg-scroll bg-[length:100%_100%] bg-[url('/images/background.png')]">
-          <img :src="boy" class="w-96 absolute bottom-52 left-8">
-          <img :src="slime" class="w-80  absolute bottom-52 right-32">
+          <img id="boy" ref="boyRef" :src="boy" class="w-80 absolute bottom-52 left-8 ">
+          <img id="slime" ref="slimeRef" :src="slime" class="w-80 absolute bottom-52 right-32 ">
+          <div class="absolute flex flex-row space-x-3 mt-7 ml-3  h-auto w-auto ">
+          <img :src="heart" class="w-10 " :style="hidethree"/>
+          <img :src="heart" class="w-10 " :style="hidetwo"/>
+          <img :src="heart" class="w-10 " :style="hideone"/>
+          </div>
           <div id="first" class="w-full h-1/3 flex flex-row box-border content-center items-center justify-around">
             <!-- Score -->
-            <div id="score" class="bg-white border-4 border-black box-border w-25 h-18 mt-5 self-start">
+            <div id="score" class="bg-white border-4 border-black box-border w-32 h-18 mt-5 self-start text-center">
               <p class="p-2">Score : {{ score }}</p>
             </div>
             <!-- Word -->
-            <div id="word" class="bg-white border-4 border-black box-border w-64 h-2/5 text-center text-3xl bg-center">
-              <p class="pt-8" >{{ engshowword() }}</p>
+            <div id="word" class="bg-white border-4 border-black box-border w-72 h-2/5 text-center text-4xl bg-center " :style="show">
+              <p class="pt-8 duration-700" >{{ box[0].English }}</p>
+              
             </div>
             <!-- button pause -->
               <button @click="play()" class="w-14 h-14 self-start justify-self-end mt-5 rounded-full bg-blue-500 focus:outline-none" id="pause">
@@ -97,45 +194,93 @@ function scoreplus(){
           <div id="second" class="w-full h-1/3 flex flex-col place-items-end">
             <!-- Countdown Timer -->
             <div>
-            <div class="flex flex-col gap-2 z-10 mt-2 mr-6 bg-white p-2 pr-5 border-4 border-black">
+            <!-- <div class="flex flex-col gap-2 z-10 mt-2 mr-6 bg-white p-2 pr-5 border-4 border-black">
               <h1>Countdown Timer</h1>
-              <p id="timeDisplay">Time Remaining: {{ sec }} Sec</p>
-              <!-- <p id="timeup" v-if="sec === 0" class="text-red-500 inline-flex justify-center gap-2">Replay?<a href="#"><img src="./components/replay.png" class="w-6"></a></p> -->
-            </div>
+              <p id="timeDisplay">Time Remaining: {{ time }} Sec</p>
+            </div> -->
             </div>
           </div>
           <div id="third" class="w-full h-1/3  flex justify-center items-center space-x-40">
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
-              {{ randomanswer()[0].Thai }}
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300" 
+            @click="checkanswer(answer[0])">
+            
+            {{ leftanswer(answer) }}
             </button>
-
-            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center hover:bg-slate-50">
-              {{ randomanswer()[1].Thai }}
+            <button class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300 " 
+            @click="checkanswer(answer[1])">
+            
+            {{ rightanswer(answer) }}
             </button>
           </div>
         </div>
-
         <!-- <div id="right" class="w-1/12  h-full bg-blue-400">right</div> -->
-
-      </div>
-
-      <!-- <div id="bottom" class="h-1/6 w-full bg-lime-300"> </div> -->
-        <!-- Footer -->
-        <!-- <button type="submit" class="font-mono font-medium bg-white p-2 border-4 border-black" @click="openNav">Test Overlay</button>
-
-      <div id="myNav" class="overlay">
-        <div class="overlay-content flex flex-col justify-center content-center">
-          <div class="overlay-element block mt-80 gap-5 w-full h-full pt-4 ">
-            <h1 class="text-red-500 text-4xl text-center flex justify-center">Game Over!</h1>
-            <button class="border-2 border-blue-400 text-white p-3 my-6 rounded-md text-xl font-bold" @click="closeNav">Play Again</button>
+      <div id="myNav" class="overlay" :class="hp === 0 ? openNav():''">
+          <div class="overlay-content flex flex-col justify-center content-center">
+            <div class="overlay-element block mt-80 gap-5 w-full h-full pt-4 ">
+              <h1 class="text-red-500 text-4xl text-center flex justify-center">Game Over!</h1>
+              <p class="text-4xl text-white">Total Score: {{ score }}</p>
+              <button class="border-2 border-blue-400 text-white p-3 my-6 rounded-md text-xl font-bold" @click="reload">GO TO FIRST PAGE</button>
           </div>
         </div>
       </div>
-       -->
-    </div>
+       </div>       
 </template>
 
 <style scoped>
+/* html, body {margin: 0; height: 100%; overflow-y: hidden} */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Mitr', sans-serif;
+
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Arial;
+    
+}
+h1{
+    padding: 1rem 3rem;
+}
+a {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem 3rem;
+    color: #f4f4f4;
+    text-transform: uppercase;
+  }
+  #btn {
+    text-decoration: none;
+    /* border: 3px solid rgb(35, 217, 230); */
+    position: relative;
+    overflow: hidden;
+  }
+  #btn:hover {
+    box-shadow: 1px 1px 25px 10px rgb(35, 217, 230);
+  }
+  #btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgb(248, 250, 250),
+      transparent
+    );
+    transition: all 650ms;
+  }
+
+  #btn:hover:before {
+    left: 100%;
+  }
 .overlay {
   height: 100%;
   width: 0;
