@@ -97,12 +97,12 @@ const changeGIF = () =>{
       boyRef.value.src = boyAttack;
       setTimeout(() => {
         boyRef.value.src = boy;
-        }, 1000);
+        }, 1000)
   
       slimeRef.value.src = attackSlime;
       setTimeout(() => {
       slimeRef.value.src = slime;
-        }, 1000);
+        }, 1000)
   }
 
 ////// addEvent
