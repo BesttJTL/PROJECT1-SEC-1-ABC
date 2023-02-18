@@ -37,7 +37,7 @@ function random() {
   box[0] = array[randomIndex]                                  //เก็บคำศัพท์ที่สุ่มได้ไว้ใน box[0]
   answerRandom()                                               
 }
-//function สุ่มคำตอบที่ผิด
+//function สุ่มคำตอบ
 function answerRandom() {
   const randomIndex = Math.floor(Math.random() * array.length) //สุ่มตำแหน่งของคำศัพท์ใน array
   if (box[0].Thai === array[randomIndex].Thai) {        //เช็คว่าคำศัพท์ที่อยู่ใน box[0] นั้นเหมือนกับคำศัพท์ที่อยู่ใน array ตาม index ที่สุ่มได้หรือไม่ถ้าเหมือนกัน ให้เรียกใช้ฟังก์ชั่น answerRandom() ใหม่
