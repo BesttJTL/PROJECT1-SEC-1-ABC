@@ -50,6 +50,31 @@ const showOverlay = () => {
 //   }
 // }
 
+// function randomword(){ (cartoon)
+//   let randomw, English;
+//   randomw = array[Math.floor(Math.random() * array.length)];
+//   box[0] = randomw;
+//   answerRandom();
+//   English = randomw.English;
+//   return English;
+// }
+
+// function randomAnswer() { (cartoon)
+//   const trueword = box[0];
+//   const fakegroup = array.filter((x) => x !== trueword);
+//   const fakeword = fakegroup[Math.floor(Math.random() * fakegroup.length)];
+//   const mathrandom = Math.floor(Math.random() * 100);
+
+//   return mathrandom % 2 === 0 ? [trueword.Thai, fakeword.Thai] : [fakeword.Thai, trueword.Thai];
+// }
+// function leftanswer(x){
+//   return x[0]
+// }
+// function rightanswer(x){
+//   return x[1]
+// }
+
+
 function random() {
   let randomobject = array[Math.floor(Math.random() * array.length)]; //random words with specific range.
   box[0] = randomobject; //keep randomed word at first position in new array
