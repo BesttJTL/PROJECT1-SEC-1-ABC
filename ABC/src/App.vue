@@ -32,6 +32,24 @@ const showOverlay = () => {
   overlay.value.style.width = "100%";
 };
 
+// //function สุ่มคำศัพท์ (Mark)
+// function random() {
+//   const randomIndex = Math.floor(Math.random() * array.length) //สุ่มตำแหน่งของคำศัพท์ใน array
+//   box[0] = array[randomIndex]                                  //เก็บคำศัพท์ที่สุ่มได้ไว้ใน box[0]
+//   answerRandom()                                               
+// }
+// //function สุ่มคำตอบ
+// function answerRandom() {
+//   const randomIn = Math.floor(Math.random() * array.length) //สุ่มตำแหน่งของคำศัพท์ใน array
+//   if (box[0].Thai === array[randomIn].Thai) {        //เช็คว่าคำศัพท์ที่อยู่ใน box[0] นั้นเหมือนกับคำศัพท์ที่อยู่ใน array ตาม index ที่สุ่มได้หรือไม่ถ้าเหมือนกัน ให้เรียกใช้ฟังก์ชั่น answerRandom() ใหม่
+//     answerRandom()
+//   } else {
+//     box[1] = array[randomIn]           //ถ้าไม่เหมือนกัน ให้นำคำศัพท์ที่อยู่ใน array ตาม index ที่สุ่มได้ใส่ไว้ใน box[1]
+//     answer = [box[0].Thai, box[1].Thai]   //นำคำศัพท์ที่อยู่ใน box[0] และ box[1] ใส่เป็น element array ของ answer
+//     answer.sort(() => Math.random() - 0.5)  //สุ่มลำดับ element กัน
+//   }
+// }
+
 function random() {
   let randomobject = array[Math.floor(Math.random() * array.length)]; //random words with specific range.
   box[0] = randomobject; //keep randomed word at first position in new array
