@@ -59,7 +59,7 @@ const showOverlay = () => {
 //   return English;
 // }
 
-// function randomAnswer() { (cartoon)
+// function answerRandom() { (cartoon)
 //   const trueword = box[0];
 //   const fakegroup = array.filter((x) => x !== trueword);
 //   const fakeword = fakegroup[Math.floor(Math.random() * fakegroup.length)];
