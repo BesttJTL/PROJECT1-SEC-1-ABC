@@ -60,7 +60,6 @@ function leftanswer(x) {
 function rightanswer(x) {
   return x[1];
 }
-
 //function ตัวละครโดนโจมตีเมื่อตอบผิด
 function changeImage() {
   boyRef.value.src = attackBoy;
@@ -68,7 +67,6 @@ function changeImage() {
     boyRef.value.src = boy;
   }, 1000);
 }
-
 //function ตัวละครไปโจมตีเมื่อตอบถูก
 const changeGIF = () => {
   boyRef.value.src = boyAttack;
