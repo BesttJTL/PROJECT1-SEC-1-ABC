@@ -87,7 +87,6 @@ function checkanswer(x){
     changeGIF()
   }
   else{
-    score.value = 0
     --hp.value
     heartattack()
     show.value = {'background-color': 'rgb(248 113 113)'}
@@ -128,14 +127,13 @@ const playSong = () => {
   else song.value.pause()
   playing.value = !playing.value
 }
-const play = SystemUiconsVolumeDisabled
 </script>
 
 <template>
   <div id="mainDiv">
-    <div class="w-screen h-screen flex flex-col items-center justify-center gap-y-8 bg-[url('images/background2b.png')] bg-[length:100%_100%] bg-center" id="parent" ref="parent" >
+    <div class="w-screen h-screen flex flex-col items-center justify-center gap-y-8 bg-[url('images/background2b.png')] bg-center bg-[length:100%_100%] " id="parent" ref="parent" >
       <div class="flex pb-10">
-        <h1 class="text-8xl text-white text-bold">Game A B C</h1>
+        <h1 class="text-8xl text-white text-bold md:text-6xl" id="text">Game A B C</h1>
       </div>
         <div class="flex pb-32">
           <a href="#fullscreen" class="btn justify-center items-center" @click="hide" id="btn">Let's Play</a>
@@ -163,9 +161,9 @@ const play = SystemUiconsVolumeDisabled
             </div>
             <!-- button pause -->
                 <!-- <font-awesome-icon icon="reset" id="reset-btn" class="fa-2x text-white text-center items-center content-center" /> -->
-                <div class="bg-white border-4 border-black box-border w-20 h-20 rounded-full mt-3 self-start text-center">
+                <div class="bg-white border-4 border-black box-border w-20 h-20 rounded-full mt-3  self-start text-center" id="circleSong">
                   <audio ref="song" :src="bgSong" id="music"></audio>
-                  <button class="content-center item-center pt-1" @click="playSong">
+                  <button class="text-center pt-1" @click="playSong" id="btnsong">
                     <p v-if="playing == true"><SystemUiconsVolumeDisabled/></p>
                     <p v-else="playing == false"><SystemUiconsVolumeHigh/></p>
                   </button>
@@ -214,7 +212,28 @@ const play = SystemUiconsVolumeDisabled
 <style scoped>
 /* Responsive Design */
 @media only screen and (max-width: 640px) {
-  button{
+  #parent background-image{ 
+    background-position: center;
+    background-size: cover;
+    width: 500px;
+  }
+  #text{
+    margin-top: 66px;
+    font-size: 80px;
+  }
+
+  #btn{
+    margin-bottom: 5rem;
+  }
+  /* game */
+  #btnsong{
+    text-align: center;
+  }
+  #circleSong{
+    margin-top: 4rem;
+    margin-right: 15px;
+  }
+  #third button{
     margin-top: 4rem;
     padding: 0.5rem;
     height: 7rem;
@@ -229,9 +248,10 @@ const play = SystemUiconsVolumeDisabled
     /* position: relative;
     margin-left: rem;
     margin-top: 10rem; */
-    margin:auto;
+    text-align: center;
+    padding-bottom: 50px;
     width:50%;
-    padding:10px;
+    padding-bottom:50px;
     /* width:13rem; */
     word-wrap: break-word;
   }
@@ -243,6 +263,7 @@ const play = SystemUiconsVolumeDisabled
     margin-left: 0;
   }
   #slime{
+    margin-right: 0;
     width:10rem;
   }
   /* End of Responsive Design */
