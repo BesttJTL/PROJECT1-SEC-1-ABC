@@ -381,7 +381,7 @@ const playSong = () => {
     width: 10rem;
   }
   .game-title {
-    font-size: 30px;
+    font-size: 65px;
     transition: 0.5s;
     word-wrap: break-word;
     transition: 0.3s;
