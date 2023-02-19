@@ -1,13 +1,19 @@
 <script setup>
+
+//ไฟล์ JSON ที่เป็นเเหล่งรวมคำศัพท์
 import word from "./components/data/word.json";
 import { ref, reactive, onMounted } from "vue";
-import MajesticonsReload from "./components/icons/MajesticonsReload.vue";
+// import MajesticonsReload from "./components/icons/MajesticonsReload.vue";
+
+// Icon เสียง
 import SystemUiconsVolumeHigh from "./components/icon/SystemUiconsVolumeHigh.vue";
 import SystemUiconsVolumeDisabled from "./components/icon/SystemUiconsVolumeDisabled.vue";
+
+// import picture เข้ามาผ่าน /public
 const boy = "images/maingif2.gif";
 const slime = "images/slimegif.gif";
 const heart = "images/huajai.png";
-const logoIndex = "images/logo.png";
+// const logoIndex = "images/logo.png";
 const attackBoy = "images/dead.png";
 const boyAttack = "images/mainatkgif.gif";
 const attackSlime = "images/slimeded.png";
@@ -27,10 +33,6 @@ const boyRef = ref(null);
 const slimeRef = ref(null);
 const scoreOverlay = ref(null);
 random();
-
-const showOverlay = () => {
-  overlay.value.style.width = "100%";
-};
 
 // //function สุ่มคำศัพท์ (Mark)
 // function random() {
@@ -74,12 +76,12 @@ const showOverlay = () => {
 //   return x[1]
 // }
 
-
+// CARTOON 
 function random() {
   let randomobject = array[Math.floor(Math.random() * array.length)]; //random words with specific range.
   box[0] = randomobject; //keep randomed word at first position in new array
   answerRandom();
-  console.log(randomobject);
+  // console.log(randomobject);
   return randomobject.English;
 }
 
@@ -97,12 +99,16 @@ function answerRandom() {
   }
   return answer;
 }
+
 function leftanswer(x) {
   return x[0];
 }
 function rightanswer(x) {
   return x[1];
 }
+// END CARTOON
+
+// MARK
 //function ตัวละครโดนโจมตีเมื่อตอบผิด
 function changeImage() {
   boyRef.value.src = attackBoy;
@@ -122,7 +128,9 @@ const changeGIF = () => {
     slimeRef.value.src = slime;
   }, 1000);
 };
+// END MARK
 
+// BEST 
 ////// addEvent
 function checkanswer(x) {
   if (x === undefined) {
@@ -132,7 +140,6 @@ function checkanswer(x) {
     show.value = { "background-color": "rgb(74 222 128)" };
     changeGIF();
   } else {
-    score.value = 0;
     --hp.value;
     heartattack();
     show.value = { "background-color": "rgb(248 113 113)" };
@@ -152,18 +159,25 @@ function heartattack() {
     hidethree.value = { visibility: "hidden" };
   }
 }
+// END BEST
 
+// P 
 const reset = () => {
   location.reload();
 };
+// Function Overlay 
+const showOverlay = () => {
+  overlay.value.style.width = "100%";
+};
+// END P
 
+// MAN
 const parent = ref(null);
 const fullScreenClass = ref(null);
 const hide = () => {
   parent.value.remove(parent);
   fullScreenClass.value.className = "flex flex-col w-screen h-screen";
 };
-
 //song toggle
 const bgSong = ref("bgsong.mp3");
 const playing = ref(true);
@@ -173,6 +187,7 @@ const playSong = () => {
   else song.value.pause();
   playing.value = !playing.value;
 };
+// END MAN 
 </script>
 <template>
   <div id="mainDiv" @click="testEvent">
@@ -298,6 +313,7 @@ const playSong = () => {
             <h1 class="text-red-500 text-4xl text-center flex justify-center">
               Game Over!
             </h1>
+            <p class="text-4xl text-white">Total Score: {{ score }}</p>
             <!-- <p ref="scoreOverlay">{{ keepScore() }}</p> -->
             <button
               class="back-main-btn border-2 border-blue-400 text-white p-5 my-6 rounded-md text-xl font-bold"
