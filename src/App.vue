@@ -99,36 +99,7 @@ function answerRandom() {
   }
   return answer;
 }
-
-function leftanswer(x) {
-  return x[0];
-}
-function rightanswer(x) {
-  return x[1];
-}
 // END CARTOON
-
-// MARK
-//function ตัวละครโดนโจมตีเมื่อตอบผิด
-function changeImage() {
-  boyRef.value.src = attackBoy;
-  setTimeout(() => {
-    boyRef.value.src = boy;
-  }, 1000);
-}
-//function ตัวละครไปโจมตีเมื่อตอบถูก
-const changeGIF = () => {
-  boyRef.value.src = boyAttack;
-  setTimeout(() => {
-    boyRef.value.src = boy;
-  }, 1000);
-
-  slimeRef.value.src = attackSlime;
-  setTimeout(() => {
-    slimeRef.value.src = slime;
-  }, 1000);
-};
-// END MARK
 
 // BEST 
 ////// addEvent
@@ -160,6 +131,28 @@ function heartattack() {
   }
 }
 // END BEST
+
+// MARK
+//function ตัวละครโดนโจมตีเมื่อตอบผิด
+function changeImage() {
+  boyRef.value.src = attackBoy;
+  setTimeout(() => {
+    boyRef.value.src = boy;
+  }, 750);
+}
+//function ตัวละครไปโจมตีเมื่อตอบถูก
+const changeGIF = () => {
+  boyRef.value.src = boyAttack;
+  setTimeout(() => {
+    boyRef.value.src = boy;
+  }, 500);
+
+  slimeRef.value.src = attackSlime;
+  setTimeout(() => {
+    slimeRef.value.src = slime;
+  }, 500);
+};
+// END MARK
 
 // P 
 const reset = () => {
@@ -289,13 +282,13 @@ const playSong = () => {
             class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300"
             @click="checkanswer(answer[0])"
           >
-            {{ leftanswer(answer) }}
+            {{ answer[0] }}
           </button>
           <button
             class="relative bg-white border-4 border-black box-border w-64 h-2/5 text-center text-2xl bg-center duration-300 hover:bg-slate-300"
             @click="checkanswer(answer[1])"
           >
-            {{ rightanswer(answer) }}
+            {{ answer[1] }}
           </button>
         </div>
       </div>
